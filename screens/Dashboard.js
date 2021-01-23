@@ -124,27 +124,27 @@ class DashBoard extends HTMLElement {
 
         <div id="mainweb">
             <div class="main-option animate1" id="0">
-            <a class="main-option-link premiere-pro" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
-            Premiere Pro
-            </a>
+                <a class="main-option-link premiere-pro" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
+                Premiere Pro
+                </a>
             </div>
 
             <div class="main-option animate2" id="1">
-            <a class="main-option-link after-effect" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
-            PhotoShop
-            </a>
+                <a class="main-option-link after-effect" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
+                PhotoShop
+                </a>
             </div>
 
             <div class="main-option animate1" id="2">
-            <a class="main-option-link photoshop" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
-            After Effects
-            </a>
+                <a class="main-option-link photoshop" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
+                After Effects
+                </a>
             </div>
 
-            <div class="main-option animate2" id="3">
-            <a class="main-option-link adobe-illutrator" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
-                Adobe Illustrator
-            </a>
+        <div class="main-option animate2" id="3">
+                <a class="main-option-link adobe-illutrator" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
+                    Adobe Illustrator
+                </a>
         </div>
         
         

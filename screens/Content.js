@@ -282,7 +282,7 @@ class Content extends HTMLElement {
                 <div class="right-nav">
                     <div class="menu">MENU</div>
                     <div class="search">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-search">abc</i>
                         <p>SEARCH</p>
                     </div>
                 </div>
