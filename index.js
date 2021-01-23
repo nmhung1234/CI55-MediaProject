@@ -6,8 +6,26 @@ import './screens/Content.js';
 
 const app = document.getElementById('app');
 
+//Router
+var root = null;
+var useHash = true;
+var hash = '#!'; 
+var router = new Navigo(root, useHash, hash);
 
-redirect();
+router
+  .on({
+    '/temp':  () => {
+        redirect('temp');
+    },
+    '/content':  () => {
+        redirect('content');
+    },
+    '*':  () => {
+        redirect();
+    }
+  })
+  .resolve();
+
 
 
 function redirect(screen) {
@@ -25,4 +43,4 @@ function redirect(screen) {
 }
 
 
-export default redirect
+export default router;

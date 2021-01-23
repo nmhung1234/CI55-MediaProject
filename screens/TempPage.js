@@ -1,4 +1,4 @@
-import redirect from '../index.js'
+import router from '../index.js';
 
 
 
@@ -169,7 +169,7 @@ class TempPage extends HTMLElement {
         this.shadowDom.querySelectorAll('a').forEach(a => {
             a.onclick = (e) => {
                 e.preventDefault();
-                redirect('content');
+                router.navigate('/content');
             }
         })
     }

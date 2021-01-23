@@ -1,4 +1,4 @@
-import redirect from '../index.js'
+import router from '../index.js';
 
 
 
@@ -154,7 +154,7 @@ class DashBoard extends HTMLElement {
         this.shadowDom.querySelectorAll('a').forEach(a => {
             a.onclick = (e) => {
                 e.preventDefault();
-                redirect('temp');
+                router.navigate('/temp');
             }
         })
     }
