@@ -141,10 +141,11 @@ class DashBoard extends HTMLElement {
                 </a>
             </div>
 
-        <div class="main-option animate2" id="3">
-                <a class="main-option-link adobe-illutrator" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
-                    Adobe Illustrator
-                </a>
+            <div class="main-option animate2" id="3">
+                    <a class="main-option-link adobe-illutrator" href="./ProjectMain/tempPage/TempPage.html" target="_blank">
+                        Adobe Illustrator
+                    </a>
+            </div>
         </div>
         
         
