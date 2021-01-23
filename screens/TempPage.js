@@ -8,70 +8,70 @@ const style = `
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  a{
+}
+a{
     text-decoration: none;
     color: black;
-  }
+}
   /* -------container------ */
-  .all {
-    background-image: linear-gradient(
+.all {
+        background-image: linear-gradient(
         40deg,
         rgba(85, 67, 243, 0.253) 30%,
         rgba(243, 11, 11, 0.342)
-      ),
-      url("./images/backTemp.jpg");
-      background-attachment: fixed;
+        ),
+        url("./images/backTemp.jpg");
+        background-attachment: fixed;
     background-position-y: 80%;
-  }
-  .container {
+}
+.container {
     width: 80%;
     height: 100%;
     margin: 0 auto;
     /* border: 1px solid black; */
-  }
-  
-  
+}
+
+
   /* --------navigation------- */
-  .container .nav {
+.container .nav {
     height: 50px;
     /* border: 1px solid black; */
     display: flex;
     justify-content: flex-end;
-  }
-  .container .select {
+}
+.container .select {
     height: 30px;
     margin: 10px 20px 0 0;
     border: none;
     outline: none;
     border-radius: 5px;
-  }
-  .container input[type=text]{
-      height: 30px;
-      margin: 10px 20px 0 0;
-      border: none;
-      outline: none;
-      border-radius: 5px;
-      padding-left: 10px;
-  }
-  .container .nav i{
-      font-size: 20px;
-      line-height: 50px;
-      color: white;
-      
-  }
-  
+}
+.container input[type=text]{
+    height: 30px;
+    margin: 10px 20px 0 0;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.container .nav i{
+    font-size: 20px;
+    line-height: 50px;
+    color: white;
+    
+}
+
   /* --------component--------- */
-  .container .component {
+.container .component {
     /* border:  1px solid black; */
     height: 100vh;
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-  }
-  
-  .container .component .component-child {
+}
+
+.container .component .component-child {
     /* border:  1px solid black; */
     height: 30%;
     width: 70%;
@@ -80,12 +80,12 @@ const style = `
     box-shadow: 3px 3px 20px 2px rgba(0, 0, 0, 0.164);
     background-color: rgba(255, 255, 255, 0.219);
     transition: all 0.3s ease-in;
-  }
-  .container .component .component-child:hover {
+}
+.container .component .component-child:hover {
     transform: translateY(-15px) scale(1.05);
     transition: all 0.4s ease-out;
-  }
-  .container .component .component-child a{
+}
+.container .component .component-child a{
     /* border:  1px solid black; */
     height: 100%;
     width: 100%;

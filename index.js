@@ -13,21 +13,21 @@ var hash = '#!';
 var router = new Navigo(root, useHash, hash);
 
 router
-  .on({
-    '/temp':  () => {
-        redirect('temp');
-    },
-    '/content':  () => {
-        redirect('content');
-    },
-    '*':  () => {
-        redirect();
-    }
-  })
-  .resolve();
+    .on({
+        '/temp':  () => {
+            redirect('temp');
+        },
+        '/content':  () => {
+            redirect('content');
+        },
+        '*':  () => {
+            redirect();
+        }
+    })
+    .resolve();
 
 
-
+//Redirect function
 function redirect(screen) {
     switch (screen) {
         case 'temp':
