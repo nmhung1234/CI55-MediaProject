@@ -1,6 +1,5 @@
 import router from '../index.js';
 
-
 const style = `
 
 * {

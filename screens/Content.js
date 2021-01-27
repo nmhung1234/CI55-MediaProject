@@ -257,9 +257,6 @@ a {
 
 `
 
-
-
-
 class Content extends HTMLElement {
     constructor() {
         super();

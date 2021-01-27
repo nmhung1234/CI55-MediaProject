@@ -7,81 +7,81 @@ import './screens/register.js';
 
 
 
-// const app = document.getElementById('app');
+const app = document.querySelector('#app');
 
 //Router
-// var root = null;
-// var useHash = true;
-// var hash = '#!'; 
-// var router = new Navigo(root, useHash, hash);
+var root = null;
+var useHash = true;
+var hash = '#!'; 
+var router = new Navigo(root, useHash, hash);
 
-// router
-//     .on({
-//         '/temp':  () => {
-//             redirect('temp');
-//         },
-//         '/content':  () => {
-//             redirect('content');
-//         },
-//         '*':  () => {
-//             redirect();
-//         }
-//     })
-//     .resolve();
+router
+    .on({
+        '/temp':  () => {
+            redirect('temp');
+        },
+        '/content':  () => {
+            redirect('content');
+        },
+        '/login': () => {
+            redirect('login');
+        },
+        '/register': () =>{
+            redirect('register');
+        },
+        '/home': () =>{
+            redirect('home');
+        },
+        '*':  () => {
+            redirect();
+        }
+    })
+    .resolve();
 
     export function redirect(screen){
         if(screen == 'home'){
-            document.querySelector('.app').innerHTML = `<dashboard-page></dashboard-page>`;
+            app.innerHTML = `<dashboard-page></dashboard-page>`;
         }
     
         if(screen == 'register'){
-            document.querySelector('.app').innerHTML = `<register-screen></register-screen>`;
+            app.innerHTML = `<register-screen></register-screen>`;
         }
     
         if(screen == 'login'){
-            document.querySelector('.app').innerHTML = `<login-screen></login-screen>`;
+            app.innerHTML = `<login-screen></login-screen>`;
+        }
+        if(screen == 'temp'){
+            app.innerHTML = `<temp-page></temp-page>`;
+        }
+        if(screen == 'content'){
+            app.innerHTML = `<content-page></content-page>`;
         }
     };
     redirect('login');
-    // firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function (user) {
     
-    //     if(user){
-    //         const usershow = {
-    //             name: user.displayName,
-    //             email: user.email,
-    //             id: user.uid,
-    //             verified: user.emailVerified
-    //         }
-    //         window.currentUser = usershow;
-    //         if(currentUser.verified){
-    //             redirect('home');
+        if(user){
+            const usershow = {
+                name: user.displayName,
+                email: user.email,
+                id: user.uid,
+                // verified: user.emailVerified
+            }
+            window.currentUser = usershow;
+            // if(currentUser.verified){
+                router.navigate('/home');
     
-    //         }
-    //         else{
-    //             alert('Vui lòng xác nhận email')
-    //             redirect('login');
-    //         }
+            // }
+            // else{
+            //     alert('Vui lòng xác nhận email')
+            //     redirect('login');
+            // }
             
-    //     } else {
-    //         redirect('login');
-    //     }
+        } else {
+            router.navigate('/login');
+        }
         
-    // });
-
-//Redirect function
-// function redirect(screen) {
-//     switch (screen) {
-//         case 'temp':
-//             app.innerHTML = `<temp-page></temp-page>`
-//             break;
-//         case 'content':
-//             app.innerHTML = `<content-page></content-page>`;
-//             break;
-//         default:
-//             app.innerHTML = `<dashboard-page></dashboard-page>`
-//             break;
-//     }
-// }
+    });
 
 
-// export default router;
+export default router;

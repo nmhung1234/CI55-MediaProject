@@ -158,7 +158,7 @@ class register extends HTMLElement {
                     .catch((err) => {
                         // alert(err.message);
                     })
-                    // redirect('login');
+                    redirect('login');
             }
         })
         this._shadowDOM.querySelector('p').addEventListener('click',() => {
