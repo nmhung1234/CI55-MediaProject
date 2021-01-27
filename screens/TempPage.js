@@ -1,7 +1,6 @@
 import router from '../index.js';
 
 
-
 const style = `
 
 * {
@@ -121,9 +120,6 @@ a{
 
 
 `
-
-
-
 
 class TempPage extends HTMLElement {
     constructor() {
