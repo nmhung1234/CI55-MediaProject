@@ -94,7 +94,7 @@ class register extends HTMLElement {
             const pass = this._shadowDOM.querySelector('.pass').value;
             const cfpass = this._shadowDOM.querySelector('.cfpass').value;
 
-            // chuẩn bị làm form validate
+            //form validate
             let create = true;
             if(create){
 

@@ -57,7 +57,7 @@ router
             app.innerHTML = `<content-page></content-page>`;
         }
     };
-    redirect('login');
+    router.navigate('/login');
     firebase.auth().onAuthStateChanged(function (user) {
     
         if(user){
@@ -77,9 +77,10 @@ router
             //     redirect('login');
             // }
             
-        } else {
-            router.navigate('/login');
-        }
+        } 
+        // else {
+        //     router.navigate('/login');
+        // }
         
     });
 
