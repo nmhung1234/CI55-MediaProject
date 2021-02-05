@@ -1,5 +1,4 @@
-import '../component/input.js'
-import {redirect} from '../index.js';
+import '../component/input.js';
 const style = `<style>
 
         * {
@@ -8,7 +7,7 @@ const style = `<style>
 
         }
         .login {
-            background-image: url('../images/background.jpg');
+            background-image: url('./images/background.jpg');
             background-size: cover;
             height: 100vh;
             width: 100vw;
@@ -66,7 +65,7 @@ const style = `<style>
         p:hover{
             color: #fff;
           }
-</style>`
+</style>`;
 class register extends HTMLElement {
     constructor() {
         super();
@@ -86,7 +85,7 @@ class register extends HTMLElement {
             <p>Have Account? Login</p>
         </form>
     </div>
-        `
+        `;
         this._shadowDOM.querySelector('.btn').addEventListener('click', (e) => {
             e.preventDefault();
             const name = this._shadowDOM.querySelector('.name').value;
@@ -96,74 +95,73 @@ class register extends HTMLElement {
 
             //form validate
             let create = true;
-            if(create){
-
+            if (create) {
             }
             if (name.trim() == '') {
-                this._shadowDOM.querySelector('.name').setAttribute('err', "Vui lòng nhập tên");
+                this._shadowDOM.querySelector('.name').setAttribute('err', 'Vui lòng nhập tên');
                 create = false;
-            }else{
-                this._shadowDOM.querySelector('.name').setAttribute('err', "");
+            } else {
+                this._shadowDOM.querySelector('.name').setAttribute('err', '');
                 create = true;
             }
 
             if (email.trim() == '') {
-                this._shadowDOM.querySelector('.email').setAttribute('err', "Vui lòng nhập Email");
+                this._shadowDOM.querySelector('.email').setAttribute('err', 'Vui lòng nhập Email');
                 create = false;
-            }
-            else{
-                this._shadowDOM.querySelector('.email').setAttribute('err', "");
+            } else {
+                this._shadowDOM.querySelector('.email').setAttribute('err', '');
                 create = true;
             }
 
             if (pass.trim() == '') {
-                this._shadowDOM.querySelector('.pass').setAttribute('err', "Vui lòng nhập Password");
+                this._shadowDOM
+                    .querySelector('.pass')
+                    .setAttribute('err', 'Vui lòng nhập Password');
                 create = false;
-            }
-            else{
-                this._shadowDOM.querySelector('.pass').setAttribute('err', "");
+            } else {
+                this._shadowDOM.querySelector('.pass').setAttribute('err', '');
                 create = true;
             }
 
             if (cfpass.trim() == '') {
-                this._shadowDOM.querySelector('.cfpass').setAttribute('err', "Vui lòng nhập lại mật khẩu");
+                this._shadowDOM
+                    .querySelector('.cfpass')
+                    .setAttribute('err', 'Vui lòng nhập lại mật khẩu');
                 create = false;
-            }
-            else{
-                this._shadowDOM.querySelector('.cfpass').setAttribute('err', "");
+            } else {
+                this._shadowDOM.querySelector('.cfpass').setAttribute('err', '');
                 create = true;
             }
 
             if (pass.trim() !== cfpass.trim()) {
-                this._shadowDOM.querySelector('.cfpass').setAttribute('err', "Mật khẩu không khớp");
+                this._shadowDOM.querySelector('.cfpass').setAttribute('err', 'Mật khẩu không khớp');
                 create = false;
-            }
-            else{
-                this._shadowDOM.querySelector('.cfpass').setAttribute('err', "");
+            } else {
+                this._shadowDOM.querySelector('.cfpass').setAttribute('err', '');
                 create = true;
             }
 
             if (create == true) {
-                firebase.auth().createUserWithEmailAndPassword(email, pass)
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(email, pass)
                     .then((res) => {
-                        
-                        alert(`Đăng ký thành công tài khoản: ${res.displayName = name}`);
+                        alert(`Đăng ký thành công tài khoản: ${(res.displayName = name)}`);
 
-                        firebase.auth().currentUser.sendEmailVerification();
                         firebase.auth().currentUser.updateProfile({
-                            displayName: name
+                            displayName: name,
                         });
-                        
+                        router.navigate('/login');
                     })
                     .catch((err) => {
-                        // alert(err.message);
-                    })
-                    redirect('login');
+                        alert(err.message);
+                    });
+                router.navigate('/login');
             }
-        })
-        this._shadowDOM.querySelector('p').addEventListener('click',() => {
-            redirect('login');
-        })
+        });
+        this._shadowDOM.querySelector('p').addEventListener('click', () => {
+            router.navigate('/login');
+        });
     }
 }
 window.customElements.define('register-screen', register);

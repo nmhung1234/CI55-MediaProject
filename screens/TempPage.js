@@ -1,5 +1,3 @@
-import router from '../index.js';
-
 const style = `
 
 * {
@@ -118,56 +116,108 @@ a{
 
 
 
-`
+`;
 
 class TempPage extends HTMLElement {
     constructor() {
         super();
         this.shadowDom = this.attachShadow({ mode: 'open' });
-        this.shadowDom.innerHTML = `
+        this.idDashBoard = localStorage.getItem('idDashBoard');
+        if (this.idDashBoard === '0') {
+            db.collection('premiere')
+                .get()
+                .then((res) => {
+                    const child = res.docs.map(
+                        (doc) =>
+                            `  <div class="component-child">
+                        <a id-temp-page = ${doc.id}>
+                            <img src="${doc.data().img}" alt="Ảnh bài viết" >
+                            <p>${doc.data().title}</p>
+                        </a>
+            
+            
+                    </div>`
+                    );
+                    this.shadowDom.innerHTML = `
         
-        <style>
-            ${style}
+                    <style>
+                        ${style}
+                    
+                    </style>
+            
+            
+                <div class="all">
+                    <div class="container">
+                        <div class="nav">
+                            <select class="select">
+                                <option class="options" value="0">Tất cả bài viết</option>
+                                <option class="options" value="1">Top views</option>
+                                <option class="options" value="2">Top hữu ích</option>
+                                <option class="options" value="3">Top đóng góp</option>
+                            </select>
+                            <input type="text" placeholder="Tìm kiếm...">
+                            <i class="fas fa-search"></i>
+                        </div>
+            
+                        <div class="component">
+                            
+                           ${child.join('')}
+                            
+                        </div>
+                    </div>
+                </div>
+                    
+                    
+                    `;
+                    this.shadowDom.querySelectorAll('a').forEach((a) => {
+                        a.onclick = function (e) {
+                            e.preventDefault();
+                            localStorage.setItem('idTempPage', this.getAttribute('id-temp-page'));
+                            router.navigate('/content');
+                        };
+                    });
+                });
+        } else {
+            this.shadowDom.innerHTML = `
         
-        </style>
-
-
-    <div class="all">
-        <div class="container">
-            <div class="nav">
-                <select class="select">
-                    <option class="options" value="0">Tất cả bài viết</option>
-                    <option class="options" value="1">Top views</option>
-                    <option class="options" value="2">Top hữu ích</option>
-                    <option class="options" value="3">Top đóng góp</option>
-                </select>
-                <input type="text" placeholder="Tìm kiếm...">
-                <i class="fas fa-search"></i>
+            <style>
+                ${style}
+            
+            </style>
+    
+    
+        <div class="all">
+            <div class="container">
+                <div class="nav">
+                    <select class="select">
+                        <option class="options" value="0">Tất cả bài viết</option>
+                        <option class="options" value="1">Top views</option>
+                        <option class="options" value="2">Top hữu ích</option>
+                        <option class="options" value="3">Top đóng góp</option>
+                    </select>
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <i class="fas fa-search"></i>
+                </div>
+    
+                <div class="component">
+                <div class="component-child">
+                <a>
+                    <img src="" alt="Ảnh bài viết" >
+                    <p>Nguyễn Mạnh Hùng</p>
+                </a>
+    
+    
             </div>
-
-            <div class="component">
-                
-                <div class="component-child" id = "">
-                    <a>
-                        <img src="https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg" alt="Ảnh bài viết" >
-                        <p>Khóc 1 dòng sông</p>
-                    </a>
-                
-                
+                   
+                    
                 </div>
             </div>
         </div>
-    </div>
-        
-        
-        `;
-        this.shadowDom.querySelectorAll('a').forEach(a => {
-            a.onclick = (e) => {
-                e.preventDefault();
-                router.navigate('/content');
-            }
-        })
+            
+            
+            `;
+        }
     }
 }
 
-window.customElements.define('temp-page', TempPage)
+window.customElements.define('temp-page', TempPage);

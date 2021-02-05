@@ -1,4 +1,4 @@
-import {redirect} from '../index.js';
+import { redirect } from '../index.js';
 const style = `<style>
 
 
@@ -8,7 +8,7 @@ const style = `<style>
         }
 
         .login {
-            background-image: url('../images/background.jpg');
+            background-image: url('./images/background.jpg');
             background-size: cover;
             height: 100vh;
             width: 100vw;
@@ -67,7 +67,7 @@ const style = `<style>
         p:hover{
           color: #fff;
         }
-</style>`
+</style>`;
 class login extends HTMLElement {
     constructor() {
         super();
@@ -86,57 +86,52 @@ class login extends HTMLElement {
             <p class="createAcc">Don't have Account? Register</p>
         </form>
         </div>
-        `
+        `;
 
-        this._shadowDOM.querySelector(".btn").addEventListener("click",(e) => {
+        this._shadowDOM.querySelector('.btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const name = this._shadowDOM.querySelector('.name').value;
+            const password = this._shadowDOM.querySelector('.password').value;
 
-          e.preventDefault();
-          const name = this._shadowDOM.querySelector('.name').value;
-          const password = this._shadowDOM.querySelector('.password').value;
-          
-          let login = true;
-          if(name.trim() == '')
-          {
-            this._shadowDOM.querySelector(".name").setAttribute('err', "Vui lòng nhập Email");
-            login = false;
-          } else {
-            this._shadowDOM.querySelector(".name").setAttribute('err', "");
-          }
+            let login = true;
+            if (name.trim() == '') {
+                this._shadowDOM.querySelector('.name').setAttribute('err', 'Vui lòng nhập Email');
+                login = false;
+            } else {
+                this._shadowDOM.querySelector('.name').setAttribute('err', '');
+            }
 
-          if(password.trim() == '')
-          {
-            this._shadowDOM.querySelector(".password").setAttribute('err', "Vui lòng nhập mật khẩu");
-            login = false;
-          } else {
-            this._shadowDOM.querySelector(".password").setAttribute('err', "");
-          }
+            if (password.trim() == '') {
+                this._shadowDOM
+                    .querySelector('.password')
+                    .setAttribute('err', 'Vui lòng nhập mật khẩu');
+                login = false;
+            } else {
+                this._shadowDOM.querySelector('.password').setAttribute('err', '');
+            }
 
+            if (login == true) {
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(name, password)
+                    .then((res) => {
+                        alert(
+                            `Bạn đã đăng nhập thành công với tài khoản ${res.user.email} chúc bạn có kiến thức bổ ích với website`
+                        );
+                        router.navigate('/home');
+                    })
+                    .catch((err) => {
+                        this._shadowDOM
+                            .querySelector('.password')
+                            .setAttribute('err', 'Sai tài khoản hoặc mật khẩu');
+                    });
+            }
+        });
 
-          if(login == true){
-            firebase.auth().signInWithEmailAndPassword(name, password)
-            .then((res) => {
-              console.log(res);
-              
-              if(res.user.emailVerified){
-                alert(`Đăng nhập thành công với tài khoản ${res.user.displayName}`);
-                redirect('home');
-              }
-              else{
-                redirect('login')
-              }
-              
-            })
-            .catch((err) => {
-              this._shadowDOM.querySelector(".password").setAttribute('err', "Sai tài khoản hoặc mật khẩu");
-            })
-            
-          }
-        })
-
-        this._shadowDOM.querySelector('.createAcc').addEventListener('click',(e) =>{
-          e.preventDefault();
-          redirect('register');
-        })
+        this._shadowDOM.querySelector('.createAcc').addEventListener('click', (e) => {
+            e.preventDefault();
+            router.navigate('/register');
+        });
     }
 }
 window.customElements.define('login-screen', login);
